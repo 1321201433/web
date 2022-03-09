@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .current{
+            color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div id="ap">
+        <fuck :list="list">
+            <template slot-scope="slotProps">  
+                <!-- slot-scope代表通过slot传过来的属性 -->
+                <strong class="current" v-if="slotProps.info.id == 1">
+                    {{slotProps.info.name}}                    
+                </strong>
+                <span v-else>{{slotProps.info.name}}</span>
+            </template>
+        </fuck>
+    </div>
+
+    <form action="" method="get" enctype=""></form>
+
+    <script src="js/vue.js"></script>
+    <script>
+        Vue.component('fuck',{
+            props:['list'],
+            template:`
+            <div> 
+                <li :key="item.id" v-for="(item,id) in list">
+                    <slot :info="item">{{item.name}}</slot>
+                </li>
+            </div>
+            `
+        })
+        var vm = new Vue({
+            el:'#ap',
+            data:{
+                list:[{id:1,name:'apple'},{id:2,name:'orange'},{id:3,name:'bannan'}]
+            }
+        })
+
+        var s = new XMLHttpRequest()
+    </script>
+</body>
+</html>
